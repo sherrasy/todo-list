@@ -1,0 +1,42 @@
+@use '@styles/global/variables' as vars;
+@forward '@styles/blocks/add-todo-form';
+
+.main-page {
+  &__container {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background-color: vars.$color-deluge;
+    color: vars.$color-white;
+  }
+
+  &__controls-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 40px;
+    width: 40%;
+    min-width: 500px;
+    border: 1px solid vars.$color-deluge;
+    border-radius: 20px;
+    background-color: vars.$color-solitude;
+  }
+
+  &__clear-btn {
+    padding: 10px 14px;
+    background-color: vars.$color-amaranth;
+    color: vars.$color-white;
+    border: 1px solid vars.$color-amaranth;
+    border-radius: 10px;
+  }
+  &__clear-btn:hover {
+    cursor: pointer;
+    background-color: vars.$color-amaranth-hover;
+    border: 1px solid vars.$color-amaranth-hover;
+  }
+}

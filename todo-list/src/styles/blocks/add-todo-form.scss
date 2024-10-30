@@ -1,0 +1,41 @@
+@use '@styles/global/variables' as vars;
+
+.add-todo-form {
+  &__fields {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+  }
+
+  &__field input {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid vars.$color-haiti;
+  }
+
+  &__error {
+    position: relative;
+    top: 6px;
+    height: 1px;
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+    color: vars.$color-amaranth;
+  }
+
+  &__submit {
+    padding: 10px 14px;
+    background-color: vars.$color-dodger-blue;
+    color: vars.$color-white;
+    border: 1px solid vars.$color-dodger-blue;
+    border-radius: 10px;
+  }
+  &__submit:hover {
+    cursor: pointer;
+    background-color: vars.$color-dodger-blue-hover;
+    border: 1px solid vars.$color-dodger-blue-hover;
+  }
+}
