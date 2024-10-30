@@ -1,0 +1,39 @@
+@use '@styles/global/variables' as vars;
+
+.login-form {
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    border: 1px solid vars.$color-deluge;
+    border-radius: 20px;
+    background-color: vars.$color-solitude;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  &__error {
+    margin: 6px 0;
+    text-align: center;
+    color: vars.$color-amaranth;
+  }
+
+  &__submit {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background-color: vars.$color-dodger-blue;
+    color: vars.$color-white;
+    border: 1px solid vars.$color-dodger-blue;
+    border-radius: 20px;
+  }
+  &__submit:hover {
+    cursor: pointer;
+    background-color: vars.$color-dodger-blue-hover;
+    border: 1px solid vars.$color-dodger-blue-hover;
+  }
+}

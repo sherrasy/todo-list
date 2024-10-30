@@ -1,11 +1,8 @@
 // Global
 //-----------------
 
-@import './vendor/normalize';
-@import './global/variables';
+@use './vendor/normalize';
 
 // Pages
 //-----------------
-
-// Blocks
-//-----------------
+@use './pages/login-page';

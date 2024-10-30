@@ -1,0 +1,14 @@
+@forward '@styles/blocks/login-form';
+@use '@styles/global/variables' as vars;
+
+.login-page {
+  &__container {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: vars.$color-deluge;
+  }
+}
