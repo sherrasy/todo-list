@@ -42,7 +42,7 @@ function LoginForm(): JSX.Element {
             onChange={() => clearErrors('password')}
           /></label>
           {errors.password && <p className='login-form__error'> {errors.password.message}</p>}
-        <input type='submit' className='login-form__submit' defaultValue={'Войти'}/>
+        <button type='submit' className='login-form__submit'>Войти</button>
       </div>
     </form>
   );

@@ -1,18 +1,31 @@
-import { TodosState } from "@/types/state.type";
-import { REDUCER_NAME } from "@/utils/constant";
-import { createSlice } from "@reduxjs/toolkit";
+import { TodosState } from '@/types/state.type';
+import { ITodo } from '@/types/todo.interface';
+import { REDUCER_NAME } from '@/utils/constant';
+import { getTodos, removeAllTodos, saveTodos } from '@/utils/helpers';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: TodosState = {
   todos: null,
-  isLoading: false,
-  isPosting: false,
-  hasError: false,
-  hasPostingError: false,
 };
 
 export const todoData = createSlice({
   name: REDUCER_NAME,
   initialState,
-  reducers: {    },
+  reducers: {
+    addNewTodo: (state, { payload }: PayloadAction<ITodo>) => {
+      state.todos = state.todos ? [...state.todos, payload] : [payload];
+      saveTodos(state.todos);
+    },
+
+    fetchTodoList: (state) => {
+      state.todos = getTodos();
+    },
+
+    clearAllTodos: (state) => {
+      state.todos = null;
+      removeAllTodos();
+    },
+  },
 });
 
+export const { addNewTodo, fetchTodoList, clearAllTodos } = todoData.actions;

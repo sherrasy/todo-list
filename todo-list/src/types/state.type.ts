@@ -3,10 +3,6 @@ import { ITodo } from "./todo.interface";
 
 export type TodosState = {
     todos:ITodo[] | null;
-    isLoading: boolean;
-    isPosting: boolean;
-    hasError: boolean; 
-    hasPostingError: boolean; 
   };
 
 
