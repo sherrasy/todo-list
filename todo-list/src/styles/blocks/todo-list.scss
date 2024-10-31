@@ -10,6 +10,7 @@
 .tabs {
   .MuiTabs-flexContainer {
     gap: 20px;
+    justify-content: space-around;
   }
 
   &__list {
@@ -23,6 +24,10 @@
     padding: 0;
     list-style: none;
     text-transform: uppercase;
+  }
+
+  &__item {
+    font-size: 16px;
   }
 }
 
