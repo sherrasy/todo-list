@@ -26,7 +26,7 @@ function TodoList(): JSX.Element {
             <li
               key={key}
               className={`tabs__item ${
-                searchTab === key ? 'tabs__item--active' : ''
+                tabName === value ? 'tabs__item--active' : ''
               }`}
             >
               <Link to={`?tab=${key}`} className='tabs__link'>
