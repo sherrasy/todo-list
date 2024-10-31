@@ -49,7 +49,7 @@ function AddTodoForm(): JSX.Element {
             <p className='add-todo-form__error'> {errors.text.message}</p>
           )}
         </div>
-        <Button type='submit' className='add-todo-form__submit'>
+        <Button type='submit' variant='contained' className='add-todo-form__submit'>
           <AddIcon className='icon'/>
           <span>Добавить</span>
         </Button>
