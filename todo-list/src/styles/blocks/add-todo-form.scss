@@ -27,11 +27,11 @@
 
   &__error {
     position: relative;
-    top: 6px;
+    top: 4px;
+    left: 10px;
     height: 1px;
     margin: 0;
     font-size: 14px;
-    text-align: center;
     color: vars.$color-amaranth;
   }
 
@@ -60,5 +60,32 @@
     background-color: vars.$color-dodger-blue-hover;
     border: 1px solid vars.$color-dodger-blue-hover;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .add-todo-form {
+    &__fields {
+      width: 300px;
+      gap: 10px;
+    }
+
+    &__field input {
+      padding: 6px;
+    }
+
+    &__error {
+      font-size: 12px;
+    }
+
+    &__submit {
+      padding: 6px 10px;
+      border-radius: 6px;
+      .icon {
+        width: 14px;
+        height: 14px;
+        color: vars.$color-white;
+      }
+    }
   }
 }

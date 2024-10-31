@@ -72,3 +72,38 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .main-page {
+    &__container {
+      gap: 20px;
+    }
+    &__controls-section {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+    }
+    &__controls-section,
+    &__list-section {
+      padding: 10px 20px;
+      border-radius: 10px;
+      min-width: 300px;
+      max-width: 320px;
+    }
+    &__clear-btn {
+      padding: 6px 10px;
+      border-radius: 6px;
+      .icon {
+        width: 14px;
+        height: 14px;
+        color: vars.$color-white;
+      }
+    }
+  }
+}

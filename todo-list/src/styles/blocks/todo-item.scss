@@ -8,6 +8,9 @@
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     padding: 10px;
     border: 1px solid vars.$color-deluge;
     border-radius: 0 10px;
@@ -22,7 +25,13 @@
   &__wrapper:hover {
     background-color: vars.$color-solitude;
   }
-
+  &__text {
+    max-width: 70%;
+  }
+  &__text span {
+    word-wrap: break-word;
+    white-space: normal;
+  }
   &__controls {
     display: -webkit-box;
     display: -ms-flexbox;

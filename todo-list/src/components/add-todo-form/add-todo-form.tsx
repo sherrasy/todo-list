@@ -24,7 +24,7 @@ function AddTodoForm(): JSX.Element {
 
   const handleErrors: SubmitErrorHandler<IAddTodoForm> = () => {
     timerRef.current = setTimeout(() => {
-      clearErrors(['text']);
+      clearErrors('text');
     }, 4000);
   };
 
@@ -42,10 +42,10 @@ function AddTodoForm(): JSX.Element {
         <div className='add-todo-form__field'>
           <input
             type='text'
-            placeholder='Текст вашей заметки'
+            placeholder='Пополните список...'
             autoComplete='off'
             {...register('text', {
-              required: 'Введите текст заметки' ,
+              required: 'Введите текст задачи' ,
             })}
           />
           {errors.text && (
