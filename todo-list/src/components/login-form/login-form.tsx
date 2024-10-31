@@ -24,7 +24,7 @@ function LoginForm(): JSX.Element {
   const handleErrors: SubmitErrorHandler<ILoginForm> = () => {
     timerRef.current = setTimeout(() => {
       clearErrors(['login', 'password']);
-    }, 4000);
+    }, 1000);
   };
 
   useEffect(() => {

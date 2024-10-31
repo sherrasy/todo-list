@@ -41,7 +41,7 @@
     padding: 0;
     color: vars.$color-haiti;
     list-style: none;
-    max-height: 800px;
+    max-height: 500px;
     overflow: auto;
     scrollbar-width: thin;
     scrollbar-color: vars.$color-deluge vars.$color-solitude;
@@ -49,5 +49,26 @@
 
   &__item {
     margin: 10px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tabs {
+    &__list {
+      gap: 10px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .todos {
+    &__list {
+      max-height: 250px;
+      font-size: 12px;
+    }
+
+    &__item {
+      margin: 6px 0;
+    }
   }
 }
