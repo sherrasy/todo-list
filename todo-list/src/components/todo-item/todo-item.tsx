@@ -27,7 +27,7 @@ function TodoItem({ todo }: TodoItemProps): JSX.Element {
         <span>{text}</span>
       </div>
       <div className='todo-item__controls'>
-        {!completed && (
+        {(!completed && !deleted) && (
           <svg className='icon' onClick={handleCompletedClick}>
             <use xlinkHref={`${sprite}#check`}></use>
           </svg>
