@@ -1,0 +1,40 @@
+@use '@styles/global/variables' as vars;
+
+.todo-item {
+  &__wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid vars.$color-deluge;
+    border-radius: 0 10px;
+    &.completed-todo {
+      text-decoration: line-through;
+      color: vars.$color-deluge;
+    }
+    &.deleted-todo {
+      color: vars.$color-deluge;
+    }
+  }
+  &__wrapper:hover {
+    background-color: vars.$color-solitude;
+  }
+
+  &__controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 20px;
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+    .icon:hover {
+      color: vars.$color-deluge;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,42 +1,74 @@
 @use '@styles/global/variables' as vars;
 @forward '@styles/blocks/add-todo-form';
+@forward '@styles/blocks/todo-list';
 
 .main-page {
   &__container {
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 40px;
-    background-color: vars.$color-deluge;
+    width: 100%;
+    height: 100vh;
     color: vars.$color-white;
+    background-color: vars.$color-deluge;
+    overflow: hidden;
   }
 
   &__controls-section {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
-    padding: 30px 40px;
+    gap: 20px;
+  }
+
+  &__controls-section,
+  &__list-section {
     width: 40%;
-    min-width: 500px;
+    padding: 30px 40px;
+    background-color: vars.$color-solitude;
     border: 1px solid vars.$color-deluge;
     border-radius: 20px;
-    background-color: vars.$color-solitude;
+    min-width: 560px;
   }
 
   &__clear-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
     padding: 10px 14px;
-    background-color: vars.$color-amaranth;
     color: vars.$color-white;
+    background-color: vars.$color-amaranth;
     border: 1px solid vars.$color-amaranth;
     border-radius: 10px;
+    .icon {
+      width: 20px;
+      height: 20px;
+      color: vars.$color-white;
+    }
   }
   &__clear-btn:hover {
-    cursor: pointer;
     background-color: vars.$color-amaranth-hover;
     border: 1px solid vars.$color-amaranth-hover;
+    cursor: pointer;
   }
 }

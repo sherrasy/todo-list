@@ -1,0 +1,53 @@
+@use '@styles/global/variables' as vars;
+@forward '@styles/blocks/todo-item';
+
+.todo-list {
+  &__wrapper {
+    height: 100%;
+  }
+}
+
+.tabs {
+  &__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+    text-transform: uppercase;
+  }
+
+  &__item:hover > &__link {
+    color: vars.$color-amaranth-hover;
+  }
+
+  &__item--active {
+    color: vars.$color-deluge;
+    text-decoration: underline;
+  }
+
+  &__link {
+    color: vars.$color-haiti;
+    text-decoration: none;
+  }
+}
+
+.todos {
+  &__list {
+    padding: 0;
+    color: vars.$color-haiti;
+    list-style: none;
+    max-height: 800px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: vars.$color-deluge vars.$color-solitude;
+  }
+
+  &__item {
+    margin: 10px 0;
+  }
+}
