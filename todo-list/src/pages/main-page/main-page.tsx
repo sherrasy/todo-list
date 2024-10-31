@@ -13,7 +13,7 @@ function MainPage(): JSX.Element {
     <div className='main-page__container'>
       <div className='main-page__controls-section'>
         <AddTodoForm />
-        <Button className='main-page__clear-btn' onClick={handleClearList}>
+        <Button variant='contained' className='main-page__clear-btn' onClick={handleClearList}>
           <span>Очистить </span>
           <ClearAllIcon className='icon' />
         </Button>

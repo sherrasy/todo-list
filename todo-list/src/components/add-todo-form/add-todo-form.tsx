@@ -1,11 +1,11 @@
-import { addNewTodo } from '@/store/todo-data/todo-data';
-import { IAddTodoForm } from '@/types/add-todo-form.interface';
-import { getTodoId } from '@/utils/helpers';
-import { useAppDispatch } from '@/utils/hooks';
-import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { useEffect, useRef } from 'react';
-import { Button, TextField } from '@mui/material';
+import { IAddTodoForm } from '@frontend-types/add-todo-form.interface';
 import AddIcon from '@mui/icons-material/Add';
+import { Button, TextField } from '@mui/material';
+import { addNewTodo } from '@store/todo-data/todo-data';
+import { getTodoId } from '@utils/helpers';
+import { useAppDispatch } from '@utils/hooks';
+import { useEffect, useRef } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 function AddTodoForm(): JSX.Element {
   const {
@@ -23,13 +23,12 @@ function AddTodoForm(): JSX.Element {
     reset();
   };
 
-  const handleErrors: SubmitErrorHandler<IAddTodoForm> = () => {
-    timerRef.current = setTimeout(() => {
-      clearErrors('text');
-    }, 4000);
-  };
-
   useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      timerRef.current = setTimeout(() => {
+        clearErrors('text');
+      }, 4000);
+  }
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -38,7 +37,7 @@ function AddTodoForm(): JSX.Element {
   }, [errors]);
   
   return (
-    <form onSubmit={handleSubmit(handleTodoSubmit, handleErrors)}>
+    <form onSubmit={handleSubmit(handleTodoSubmit)}>
       <div className='add-todo-form__fields'>
         <div className='add-todo-form__field'>
         <TextField  placeholder='Пополните список...'
@@ -49,7 +48,7 @@ function AddTodoForm(): JSX.Element {
             <p className='add-todo-form__error'> {errors.text.message}</p>
           )}
         </div>
-        <Button type='submit' className='add-todo-form__submit'>
+        <Button type='submit' variant='contained' className='add-todo-form__submit'>
           <AddIcon className='icon'/>
           <span>Добавить</span>
         </Button>

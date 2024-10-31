@@ -1,6 +1,4 @@
-import { ILoginForm } from '@/types/login-form.interface';
-import { AppRoute } from '@/utils/constant';
-import { saveAuthStatus } from '@/utils/helpers';
+import { ILoginForm } from '@frontend-types/login-form.interface';
 import {
   Button,
   FormControl,
@@ -8,8 +6,10 @@ import {
   Input,
   InputLabel,
 } from '@mui/material';
+import { AppRoute } from '@utils/constant';
+import { saveAuthStatus } from '@utils/helpers';
 import { useEffect, useRef } from 'react';
-import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(): JSX.Element {
@@ -28,22 +28,21 @@ function LoginForm(): JSX.Element {
     navigate(AppRoute.Main);
   };
 
-  const handleErrors: SubmitErrorHandler<ILoginForm> = () => {
+  useEffect(() => {
+    if (Object.keys(errors).length > 0) {
     timerRef.current = setTimeout(() => {
       clearErrors(['login', 'password']);
     }, 4000);
-  };
-
-  useEffect(() => {
+  }
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
     };
   }, [errors]);
-
+  
   return (
-    <form onSubmit={handleSubmit(handleLoginSubmit, handleErrors)}>
+    <form onSubmit={handleSubmit(handleLoginSubmit)}>
       <div className='login-form__fields'>
         <div className='login-form__field'>
           <FormControl variant='standard'>
