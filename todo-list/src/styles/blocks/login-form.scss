@@ -9,6 +9,9 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    height: 260px;
     padding: 20px 30px;
     background-color: vars.$color-solitude;
     border: 1px solid vars.$color-deluge;

@@ -8,6 +8,10 @@
 }
 
 .tabs {
+  .MuiTabs-flexContainer {
+    gap: 20px;
+  }
+
   &__list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -19,20 +23,6 @@
     padding: 0;
     list-style: none;
     text-transform: uppercase;
-  }
-
-  &__item:hover > &__link {
-    color: vars.$color-amaranth-hover;
-  }
-
-  &__item--active {
-    color: vars.$color-deluge;
-    text-decoration: underline;
-  }
-
-  &__link {
-    color: vars.$color-haiti;
-    text-decoration: none;
   }
 }
 
@@ -54,10 +44,23 @@
 
 @media screen and (max-width: 767px) {
   .tabs {
+    .MuiTabs-flexContainer {
+      flex-wrap: wrap;
+      gap: 20px 10px;
+    }
+    .MuiTabs-indicator {
+      display: none;
+    }
+
     &__list {
       gap: 10px;
-      font-size: 12px;
       text-align: center;
+    }
+
+    &__item {
+      padding: 4px;
+      font-size: 12px;
+      width: 100px;
     }
   }
 

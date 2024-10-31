@@ -4,37 +4,36 @@ import {
   getFilteredTodos,
   getTodosList,
 } from '@/store/todo-data/selectors';
-import { Link, useSearchParams } from 'react-router-dom';
 import { TodosTab } from '@/utils/constant';
+import { Tab, Tabs } from '@mui/material';
+import { useState } from 'react';
 
 function TodoList(): JSX.Element {
-  const [searchParams] = useSearchParams();
-  const searchTab = searchParams.get('tab');
+  const [searchTab, setSearchTab] = useState("Default")
     const tabName = searchTab
       ? TodosTab[searchTab as keyof typeof TodosTab]
       : TodosTab.Default;
     const selector = tabName  === TodosTab.Default ? getTodosList : getFilteredTodos(tabName);
     const todos = useAppSelector(selector);
 
-  const tabs = Object.entries(TodosTab);
+    const handleTabClick = (tab:string)=> setSearchTab(tab);
 
+    const tabs = Object.entries(TodosTab);
   return (
     <div className='todo-list__wrapper'>
       <div className='todo-list__tabs tabs'>
-        <ul className='tabs__list'>
+        <Tabs className='tabs__list' value={searchTab}>
           {tabs.map(([key, value]) => (
-            <li
+            <Tab
               key={key}
-              className={`tabs__item ${
-                tabName === value ? 'tabs__item--active' : ''
-              }`}
-            >
-              <Link to={`?tab=${key}`} className='tabs__link'>
-                {value}
-              </Link>
-            </li>
+              className='tabs__item'
+              label={value}
+              value={key}
+              onClick={()=>handleTabClick(key)}
+              wrapped
+            />
           ))}
-        </ul>
+        </Tabs>
       </div>
       <div className='todo-list__container todos'>
         <ul className='todos__list'>
