@@ -2,10 +2,20 @@
 
 .add-todo-form {
   &__fields {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    gap: 20px;
     width: 320px;
   }
 
@@ -27,15 +37,29 @@
   }
 
   &__submit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: 10px;
     padding: 10px 14px;
-    background-color: vars.$color-dodger-blue;
     color: vars.$color-white;
+    background-color: vars.$color-dodger-blue;
     border: 1px solid vars.$color-dodger-blue;
     border-radius: 10px;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      color: vars.$color-white;
+    }
   }
+
   &__submit:hover {
-    cursor: pointer;
     background-color: vars.$color-dodger-blue-hover;
     border: 1px solid vars.$color-dodger-blue-hover;
+    cursor: pointer;
   }
 }

@@ -1,42 +1,49 @@
-import { addNewTodo } from "@/store/todo-data/todo-data";
-import { IAddTodoForm } from "@/types/add-todo-form.interface";
-import { getTodoId } from "@/utils/helpers";
-import { useAppDispatch } from "@/utils/hooks";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { addNewTodo } from '@/store/todo-data/todo-data';
+import { IAddTodoForm } from '@/types/add-todo-form.interface';
+import { getTodoId } from '@/utils/helpers';
+import { useAppDispatch } from '@/utils/hooks';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import sprite from '/sprite.svg';
 
-function AddTodoForm():JSX.Element {
+function AddTodoForm(): JSX.Element {
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
-    reset
+    reset,
   } = useForm<IAddTodoForm>({ mode: 'onBlur', reValidateMode: 'onChange' });
   const dispatch = useAppDispatch();
   const handleTodoSubmit: SubmitHandler<IAddTodoForm> = (data) => {
-    const id = getTodoId()
-    dispatch(addNewTodo({...data, id, completed:false, deleted:false}))
+    const id = getTodoId();
+    dispatch(addNewTodo({ ...data, id, completed: false, deleted: false }));
     reset();
   };
-    return (
-      <form onSubmit={handleSubmit(handleTodoSubmit)}>
-          <div className='add-todo-form__fields'>
-          <div className='add-todo-form__field'>
+  return (
+    <form onSubmit={handleSubmit(handleTodoSubmit)}>
+      <div className='add-todo-form__fields'>
+        <div className='add-todo-form__field'>
           <input
             type='text'
-            placeholder="Текст вашей заметки"
+            placeholder='Текст вашей заметки'
             {...register('text', {
               required: { value: true, message: 'Введите текст заметки' },
             })}
             onChange={() => clearErrors('text')}
           />
-          {errors.text && <p className='add-todo-form__error'> {errors.text.message}</p>}
-          </div>
-        <button type='submit' className='add-todo-form__submit'>Добавить</button>
+          {errors.text && (
+            <p className='add-todo-form__error'> {errors.text.message}</p>
+          )}
+        </div>
+        <button type='submit' className='add-todo-form__submit'>
+          <svg className='icon'>
+            <use xlinkHref={`${sprite}#plus`}></use>
+          </svg>
+          <span>Добавить</span>
+        </button>
       </div>
-      </form>
-    )
-  }
-  
-  export default AddTodoForm
-  
+    </form>
+  );
+}
+
+export default AddTodoForm;
