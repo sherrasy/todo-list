@@ -1,7 +1,8 @@
 import { ILoginForm } from '@/types/login-form.interface';
 import { AppRoute } from '@/utils/constant';
 import { saveAuthStatus } from '@/utils/helpers';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useEffect, useRef } from 'react';
+import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(): JSX.Element {
@@ -10,39 +11,64 @@ function LoginForm(): JSX.Element {
     handleSubmit,
     formState: { errors },
     clearErrors,
-  } = useForm<ILoginForm>({ mode: 'onBlur', reValidateMode: 'onChange' });
+  } = useForm<ILoginForm>({ mode: 'onBlur', reValidateMode: 'onSubmit' });
   const navigate = useNavigate();
+  const timerRef = useRef<ReturnType<typeof setTimeout>  | null>(null);
+
   const regex = /^admin$/i;
   const handleLoginSubmit: SubmitHandler<ILoginForm> = () => {
     saveAuthStatus();
-    navigate(AppRoute.Main)
+    navigate(AppRoute.Main);
   };
+  
+  const handleErrors: SubmitErrorHandler<ILoginForm> = () => {
+    timerRef.current = setTimeout(() => {
+      clearErrors(['login', 'password']);
+    }, 4000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [errors]);
+
   return (
-    <form onSubmit={handleSubmit(handleLoginSubmit)}>
-        <div className='login-form__fields'>
-          <label className='login-form__field'>
-            <span>Логин </span>
+    <form onSubmit={handleSubmit(handleLoginSubmit, handleErrors)}>
+      <div className='login-form__fields'>
+        <label className='login-form__field'>
+          <span>Логин </span>
           <input
             type='text'
+            autoComplete='off'
             {...register('login', {
-              required: { value: true, message: 'Обязательное поле' },
               pattern: { value: regex, message: 'Неверный логин' },
+              required: 'Заполните логин',
             })}
-            onChange={() => clearErrors('login')}
-          /></label>
-          {errors.login && <p className='login-form__error'> {errors.login.message}</p>}
-           <label className='login-form__field'>
-            <span>Пароль</span>
+          />
+        </label>
+        {errors.login && (
+          <p className='login-form__error'> {errors.login.message}</p>
+        )}
+        <label className='login-form__field'>
+          <span>Пароль</span>
           <input
             type='text'
+            autoComplete='off'
             {...register('password', {
-              required: { value: true, message: 'Обязательное поле' },
               pattern: { value: regex, message: 'Неверный пароль' },
+              required: 'Заполните пароль',
             })}
-            onChange={() => clearErrors('password')}
-          /></label>
-          {errors.password && <p className='login-form__error'> {errors.password.message}</p>}
-        <button type='submit' className='login-form__submit'>Войти</button>
+          />
+        </label>
+        {errors.password && (
+          <p className='login-form__error'> {errors.password.message}</p>
+        )}
+        <button type='submit' className='login-form__submit'>
+          Войти
+        </button>
       </div>
     </form>
   );
