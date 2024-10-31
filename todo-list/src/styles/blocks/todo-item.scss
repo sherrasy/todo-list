@@ -11,6 +11,13 @@
     padding: 10px;
     border: 1px solid vars.$color-deluge;
     border-radius: 0 10px;
+    &.completed-todo {
+      text-decoration: line-through;
+      color: vars.$color-deluge;
+    }
+    &.deleted-todo {
+      color: vars.$color-deluge;
+    }
   }
   &__wrapper:hover {
     background-color: vars.$color-solitude;
