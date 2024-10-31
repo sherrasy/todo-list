@@ -3,8 +3,9 @@ import { IAddTodoForm } from '@/types/add-todo-form.interface';
 import { getTodoId } from '@/utils/helpers';
 import { useAppDispatch } from '@/utils/hooks';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import sprite from '/sprite.svg';
 import { useEffect, useRef } from 'react';
+import { Button, TextField } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 function AddTodoForm(): JSX.Element {
   const {
@@ -40,24 +41,18 @@ function AddTodoForm(): JSX.Element {
     <form onSubmit={handleSubmit(handleTodoSubmit, handleErrors)}>
       <div className='add-todo-form__fields'>
         <div className='add-todo-form__field'>
-          <input
-            type='text'
-            placeholder='Пополните список...'
-            autoComplete='off'
-            {...register('text', {
+        <TextField  placeholder='Пополните список...'
+            autoComplete='off' {...register('text', {
               required: 'Введите текст задачи' ,
-            })}
-          />
+            })} variant="standard" />
           {errors.text && (
             <p className='add-todo-form__error'> {errors.text.message}</p>
           )}
         </div>
-        <button type='submit' className='add-todo-form__submit'>
-          <svg className='icon'>
-            <use xlinkHref={`${sprite}#plus`}></use>
-          </svg>
+        <Button type='submit' className='add-todo-form__submit'>
+          <AddIcon className='icon'/>
           <span>Добавить</span>
-        </button>
+        </Button>
       </div>
     </form>
   );

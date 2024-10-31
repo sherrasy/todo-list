@@ -1,7 +1,7 @@
 import { ITodo } from '@/types/todo.interface';
-import sprite from '/sprite.svg';
 import { useAppDispatch } from '@/utils/hooks';
 import { removeTodo, updateTodo } from '@/store/todo-data/todo-data';
+import { Check, Clear, Delete } from '@mui/icons-material';
 
 type TodoItemProps = {
   todo: ITodo;
@@ -28,19 +28,13 @@ function TodoItem({ todo }: TodoItemProps): JSX.Element {
       </div>
       <div className='todo-item__controls'>
         {(!completed && !deleted) && (
-          <svg className='icon' onClick={handleCompletedClick}>
-            <use xlinkHref={`${sprite}#check`}></use>
-          </svg>
+          <Check className='icon' onClick={handleCompletedClick}/>
         )}
         {!deleted && (
-          <svg className='icon' onClick={handleAddToTrashClick}>
-            <use xlinkHref={`${sprite}#trash`}></use>
-          </svg>
+          <Delete className='icon' onClick={handleAddToTrashClick}/>
         )}
         {deleted && (
-          <svg className='icon' onClick={handleDeletedClick}>
-            <use xlinkHref={`${sprite}#x`}></use>
-          </svg>
+          <Clear className='icon' onClick={handleDeletedClick}/>
         )}
       </div>
     </div>
